@@ -17,6 +17,9 @@ public class DadosDentista {
 	String email;
 	
 	@NotBlank
+	String telefone;
+	
+	@NotBlank
 	@Pattern(regexp = "\\d{4,6}")
 	String crm;
 	
@@ -31,9 +34,10 @@ public class DadosDentista {
 		
 	}
 	
-	public DadosDentista(String nome, String email, String crm, Especialidade especialidade, DadosEndereco endereco) {
+	public DadosDentista(String nome, String email, String telefone, String crm, Especialidade especialidade, DadosEndereco endereco) {
 		this.nome = nome;
 		this.email = email;
+		this.telefone = telefone;
 		this.crm = crm;
 		this.especialidade = especialidade;
 		this.endereco = endereco;
@@ -45,6 +49,10 @@ public class DadosDentista {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public String getTelefone() {
+		return telefone;
 	}
 
 	public String getCrm() {
@@ -67,6 +75,10 @@ public class DadosDentista {
 		this.email = email;
 	}
 
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 	public void setCrm(String crm) {
 		this.crm = crm;
 	}
@@ -83,7 +95,8 @@ public class DadosDentista {
 	public String toString() {
 		return "DadosDentista:"
 				+ "\nNome = " + nome 
-				+ "\nEmail = " + email 
+				+ "\nEmail = " + email
+				+ "\nTelefone = " + telefone
 				+ "\nCrm = " + crm 
 				+ "\nEspecialidade = " + especialidade
 				+ "\nEndereco = " + endereco;
