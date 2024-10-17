@@ -14,8 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import odonto.spring.api.endereco.Endereco;
 
-@Table(name = "medicos")
-@Entity(name = "Medico")
+@Table(name = "dentistas")
+@Entity(name = "Dentista")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +23,7 @@ import odonto.spring.api.endereco.Endereco;
 public class Dentista {
 	
 	public Dentista(DadosDentista dados) {
+		this.ativo = true;
 		this.nome = dados.nome;
 		this.email = dados.email;
 		this.telefone = dados.telefone;
@@ -38,10 +39,31 @@ public class Dentista {
 	private	String email;
 	private String telefone;
 	private String crm;
+	private boolean ativo;
 	
 	@Enumerated(EnumType.STRING)
 	private Especialidade especialidade;
 	
 	@Embedded
 	private Endereco endereco;
+
+	public void atualizarDados(DadosAtualizacaoDentista dados) {
+		if(dados.getNome() != null){
+			this.nome = dados.getNome();
+		}
+		
+		if(dados.getTelefone() != null){
+			this.telefone = dados.getTelefone();
+		}
+		
+		if(dados.getEndereco() != null){
+			this.endereco.atualizarDados(dados.getEndereco());
+		}
+		
+		
+	}
+
+	public void excluirDentista() {
+		this.ativo = false;
+	}
 }
